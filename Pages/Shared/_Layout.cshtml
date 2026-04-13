@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CrazyForMame Bartops Renting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <script src="https://unpkg.com/htmx.org@2/dist/htmx.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="brand">CrazyForMame Bartops Renting</a>
+            <nav>
+                <a href="/">Inicio</a>
+                <a href="/Catalogo">Catálogo</a>
+                <a href="/Tarifas">Tarifas</a>
+                <a href="/Calendario">Disponibilidad</a>
+                <a href="/Solicitud">Solicitar</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        @RenderBody()
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; @DateTime.Now.Year CrazyForMame Bartops Renting — Máquinas recreativas artesanales para eventos</p>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

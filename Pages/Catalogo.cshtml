@@ -1,0 +1,43 @@
+@page
+@model CatalogoModel
+@{
+    ViewData["Title"] = "Catálogo";
+}
+
+<div class="page-header">
+    <h1>Catálogo de máquinas</h1>
+    <p>Selecciona la máquina perfecta para tu evento.</p>
+</div>
+
+<div class="filter-bar">
+    <a href="/Catalogo" class="btn @(Model.Filtro == null ? "btn-primary" : "btn-secondary")">Todas</a>
+    <a href="/Catalogo?filtro=Grande" class="btn @(Model.Filtro == "Grande" ? "btn-primary" : "btn-secondary")">Grandes</a>
+    <a href="/Catalogo?filtro=Pequeña" class="btn @(Model.Filtro == "Pequeña" ? "btn-primary" : "btn-secondary")">Pequeñas</a>
+</div>
+
+@if (!Model.Maquinas.Any())
+{
+    <p class="empty-state">No hay máquinas disponibles en esta categoría.</p>
+}
+else
+{
+    <div class="card-grid">
+        @foreach (var m in Model.Maquinas)
+        {
+            <article class="card">
+                <div class="card-img-wrap">
+                    <img src="@m.ImagenUrl" alt="@m.Nombre" onerror="this.src='/img/placeholder.svg'" />
+                </div>
+                <div class="card-body">
+                    <span class="badge badge-@m.Categoria.ToString().ToLower()">@m.Categoria</span>
+                    <h2>@m.Nombre</h2>
+                    <p>@m.Descripcion</p>
+                    <div class="card-footer">
+                        <span class="price">Desde @m.PrecioBase.ToString("C0", new System.Globalization.CultureInfo("es-ES"))/día</span>
+                        <a href="/Solicitud?maquinaId=@m.Id" class="btn btn-primary btn-sm">Solicitar</a>
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+}

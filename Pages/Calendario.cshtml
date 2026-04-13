@@ -1,0 +1,83 @@
+@page
+@model CalendarioModel
+@{
+    ViewData["Title"] = "Disponibilidad";
+}
+
+<div class="page-header">
+    <h1>Disponibilidad</h1>
+    <p>Consulta qué máquinas están libres en las fechas de tu evento.</p>
+</div>
+
+<form method="get" class="disponibilidad-form">
+    <div class="form-row">
+        <div class="form-group">
+            <label for="desde">Fecha de inicio</label>
+            <input type="date" id="desde" name="desde" value="@Model.Desde?.ToString("yyyy-MM-dd")"
+                   min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="form-group">
+            <label for="hasta">Fecha de fin</label>
+            <input type="date" id="hasta" name="hasta" value="@Model.Hasta?.ToString("yyyy-MM-dd")"
+                   min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+        </div>
+        <div class="form-group form-group-btn">
+            <button type="submit" class="btn btn-primary">Consultar</button>
+        </div>
+    </div>
+</form>
+
+@if (Model.Consultado)
+{
+    <div class="disponibilidad-resultado">
+        @if (!Model.MaquinasDisponibles.Any() && !Model.MaquinasOcupadas.Any())
+        {
+            <p class="empty-state">No hay máquinas registradas.</p>
+        }
+        else
+        {
+            @if (Model.MaquinasDisponibles.Any())
+            {
+                <h2 class="disponibilidad-titulo disponible">Disponibles (@Model.MaquinasDisponibles.Count)</h2>
+                <div class="card-grid">
+                    @foreach (var m in Model.MaquinasDisponibles)
+                    {
+                        <article class="card">
+                            <div class="card-img-wrap">
+                                <img src="@m.ImagenUrl" alt="@m.Nombre" onerror="this.src='/img/placeholder.svg'" />
+                            </div>
+                            <div class="card-body">
+                                <span class="badge badge-disponible">Disponible</span>
+                                <span class="badge badge-@m.Categoria.ToString().ToLower()">@m.Categoria</span>
+                                <h3>@m.Nombre</h3>
+                                <div class="card-footer">
+                                    <span class="price">Desde @m.PrecioBase.ToString("C0", new System.Globalization.CultureInfo("es-ES"))/día</span>
+                                    <a href="/Solicitud?maquinaId=@m.Id&desde=@Model.Desde?.ToString("yyyy-MM-dd")&hasta=@Model.Hasta?.ToString("yyyy-MM-dd")" class="btn btn-primary btn-sm">Solicitar</a>
+                                </div>
+                            </div>
+                        </article>
+                    }
+                </div>
+            }
+            @if (Model.MaquinasOcupadas.Any())
+            {
+                <h2 class="disponibilidad-titulo ocupada">No disponibles (@Model.MaquinasOcupadas.Count)</h2>
+                <div class="card-grid">
+                    @foreach (var m in Model.MaquinasOcupadas)
+                    {
+                        <article class="card card-ocupada">
+                            <div class="card-img-wrap">
+                                <img src="@m.ImagenUrl" alt="@m.Nombre" onerror="this.src='/img/placeholder.svg'" />
+                            </div>
+                            <div class="card-body">
+                                <span class="badge badge-ocupada">No disponible</span>
+                                <span class="badge badge-@m.Categoria.ToString().ToLower()">@m.Categoria</span>
+                                <h3>@m.Nombre</h3>
+                            </div>
+                        </article>
+                    }
+                </div>
+            }
+        }
+    </div>
+}

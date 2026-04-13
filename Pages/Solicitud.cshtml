@@ -1,0 +1,87 @@
+@page
+@model SolicitudModel
+@{
+    ViewData["Title"] = "Solicitar alquiler";
+}
+
+<div class="page-header">
+    <h1>Solicitar alquiler</h1>
+    <p>Rellena el formulario y te confirmaremos disponibilidad en menos de 24 h.</p>
+</div>
+
+@if (Model.Enviado)
+{
+    <div class="alert alert-success">
+        <strong>¡Solicitud recibida!</strong> Nos pondremos en contacto contigo en menos de 24 horas para confirmar tu reserva.
+    </div>
+}
+else
+{
+    <form method="post" class="solicitud-form">
+        @Html.AntiForgeryToken()
+
+        <fieldset>
+            <legend>Máquina y fechas</legend>
+
+            <div class="form-group">
+                <label asp-for="Input.MaquinaId">Máquina</label>
+                <select asp-for="Input.MaquinaId" class="form-control">
+                    <option value="">-- Selecciona una máquina --</option>
+                    @foreach (var m in Model.Maquinas)
+                    {
+                        <option value="@m.Id">@m.Nombre (@m.Categoria — @m.PrecioBase.ToString("C0", new System.Globalization.CultureInfo("es-ES"))/día)</option>
+                    }
+                </select>
+                <span asp-validation-for="Input.MaquinaId" class="field-error"></span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Input.FechaInicio">Fecha de inicio</label>
+                    <input asp-for="Input.FechaInicio" type="date" class="form-control"
+                           min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="Input.FechaInicio" class="field-error"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.FechaFin">Fecha de fin</label>
+                    <input asp-for="Input.FechaFin" type="date" class="form-control"
+                           min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                    <span asp-validation-for="Input.FechaFin" class="field-error"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Tus datos</legend>
+
+            <div class="form-group">
+                <label asp-for="Input.NombreCliente">Nombre completo</label>
+                <input asp-for="Input.NombreCliente" type="text" class="form-control" placeholder="María García López" />
+                <span asp-validation-for="Input.NombreCliente" class="field-error"></span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="Input.EmailCliente">Correo electrónico</label>
+                    <input asp-for="Input.EmailCliente" type="email" class="form-control" placeholder="maria@ejemplo.com" />
+                    <span asp-validation-for="Input.EmailCliente" class="field-error"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Input.TelefonoCliente">Teléfono</label>
+                    <input asp-for="Input.TelefonoCliente" type="tel" class="form-control" placeholder="612 345 678" />
+                    <span asp-validation-for="Input.TelefonoCliente" class="field-error"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        @if (!string.IsNullOrEmpty(Model.ErrorConflicto))
+        {
+            <div class="alert alert-error">@Model.ErrorConflicto</div>
+        }
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Enviar solicitud</button>
+            <a href="/Catalogo" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+}

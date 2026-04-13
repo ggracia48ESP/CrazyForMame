@@ -1,0 +1,72 @@
+@page
+@model TarifasModel
+@{
+    ViewData["Title"] = "Tarifas";
+}
+
+<div class="page-header">
+    <h1>Tarifas</h1>
+    <p>Precios transparentes, sin sorpresas. El precio final se confirma al aprobar tu solicitud.</p>
+</div>
+
+<div class="tarifas-grid">
+    <div class="tarifa-card">
+        <div class="tarifa-header">
+            <h2>Máquinas Pequeñas</h2>
+            <div class="tarifa-precio">Desde <strong>120 €</strong><span>/día</span></div>
+        </div>
+        <ul class="tarifa-features">
+            <li>Pantalla 15–17"</li>
+            <li>Hasta 800 juegos clásicos</li>
+            <li>Fácil transporte e instalación</li>
+            <li>Cables y adaptadores incluidos</li>
+            <li>Soporte técnico remoto</li>
+        </ul>
+        <a href="/Catalogo?filtro=Peque%C3%B1a" class="btn btn-secondary">Ver modelos</a>
+    </div>
+
+    <div class="tarifa-card tarifa-destacada">
+        <div class="tarifa-badge">Más popular</div>
+        <div class="tarifa-header">
+            <h2>Máquinas Grandes</h2>
+            <div class="tarifa-precio">Desde <strong>180 €</strong><span>/día</span></div>
+        </div>
+        <ul class="tarifa-features">
+            <li>Pantalla 21–27"</li>
+            <li>Hasta 2000 juegos clásicos</li>
+            <li>Altavoces integrados</li>
+            <li>Montaje y desmontaje incluidos</li>
+            <li>Soporte técnico en evento</li>
+            <li>Transporte incluido (radio 50 km)</li>
+        </ul>
+        <a href="/Catalogo?filtro=Grande" class="btn btn-primary">Ver modelos</a>
+    </div>
+</div>
+
+<div class="tarifas-extra">
+    <h2>Servicios adicionales</h2>
+    <table class="tabla-extras">
+        <thead>
+            <tr>
+                <th>Servicio</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Transporte fuera de 50 km</td><td>1,50 €/km adicional</td></tr>
+            <tr><td>Día extra de alquiler</td><td>70% del precio base</td></tr>
+            <tr><td>Técnico en evento (jornada)</td><td>80 €</td></tr>
+            <tr><td>Personalización de pantalla de inicio</td><td>40 €</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="tarifas-nota">
+    <h3>¿Cómo funciona?</h3>
+    <ol>
+        <li>Elige tu máquina en el <a href="/Catalogo">catálogo</a> y comprueba la <a href="/Calendario">disponibilidad</a>.</li>
+        <li>Rellena el <a href="/Solicitud">formulario de solicitud</a> con tus fechas y datos.</li>
+        <li>Recibirás confirmación en menos de 24 h con el presupuesto final.</li>
+        <li>El pago se realiza en dos partes: 30% al confirmar, 70% el día del evento.</li>
+    </ol>
+</div>
