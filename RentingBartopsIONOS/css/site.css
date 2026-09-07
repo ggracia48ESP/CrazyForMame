@@ -1,0 +1,762 @@
+/* ═══════════════════════════════════════════════════════════
+   CrazyForMame Bartops Renting — Retro Arcade Theme
+   ═══════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+/* ─── Variables ────────────────────────────────────────────── */
+:root {
+    --bg:          #05050f;
+    --bg-surface:  #0a0a1e;
+    --bg-card:     #0d0d22;
+    --border:      #1e1e4a;
+    --accent-gold: #ffd700;
+    --accent-cyan: #00e5ff;
+    --accent-pink: #ff2d78;
+    --accent-green:#39ff14;
+    --text:        #e8e8ff;
+    --text-dim:    #8888bb;
+    --glow-gold:   0 0 6px rgba(255,215,0,0.7);
+    --glow-cyan:   0 0 6px rgba(0,229,255,0.7);
+    --glow-pink:   0 0 6px rgba(255,45,120,0.7);
+    --glow-green:  0 0 6px rgba(57,255,20,0.7);
+    --pixel-border: 4px solid var(--accent-gold);
+}
+
+/* ─── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ─── Base ──────────────────────────────────────────────────── */
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'VT323', monospace;
+    font-size: 1.15rem;
+    color: var(--text);
+    background-color: var(--bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* CRT scanlines overlay */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.09) 2px,
+        rgba(0,0,0,0.09) 4px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+
+/* CRT vignette */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.7) 100%);
+    pointer-events: none;
+    z-index: 9998;
+}
+
+a {
+    color: var(--accent-cyan);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--accent-gold);
+    text-decoration: none;
+}
+
+/* ─── Header ────────────────────────────────────────────────── */
+header {
+    background: var(--bg-surface);
+    border-bottom: 3px solid var(--accent-gold);
+    box-shadow: 0 3px 0 var(--accent-gold), var(--glow-gold);
+    padding: 0 1rem;
+    position: relative;
+    z-index: 100;
+}
+
+.header-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+    gap: 1rem;
+}
+
+.brand {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    color: var(--accent-gold);
+    text-shadow: var(--glow-gold);
+    letter-spacing: 0.04em;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+.brand:hover {
+    color: var(--accent-cyan);
+    text-shadow: var(--glow-cyan);
+}
+
+/* ─── Nav ───────────────────────────────────────────────────── */
+nav {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+nav a {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    padding: 0.4rem 0.6rem;
+    border: 2px solid transparent;
+    transition: all 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+nav a:hover {
+    color: var(--accent-cyan);
+    border-color: var(--accent-cyan);
+    box-shadow: var(--glow-cyan);
+    text-shadow: var(--glow-cyan);
+}
+
+/* ─── Main ──────────────────────────────────────────────────── */
+main {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* ─── Footer ────────────────────────────────────────────────── */
+footer {
+    background: var(--bg-surface);
+    border-top: 3px solid var(--accent-pink);
+    box-shadow: 0 -3px 0 var(--accent-pink), var(--glow-pink);
+    padding: 1rem;
+    margin-top: auto;
+    position: relative;
+    z-index: 100;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+}
+
+/* ─── Buttons ───────────────────────────────────────────────── */
+.btn {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.55rem;
+    cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    transition: all 0.1s;
+    image-rendering: pixelated;
+}
+
+.btn-primary {
+    background: var(--accent-gold);
+    color: #000;
+    box-shadow: 4px 4px 0 #997a00, var(--glow-gold);
+}
+
+.btn-primary:hover {
+    background: #ffe44d;
+    box-shadow: 2px 2px 0 #997a00, var(--glow-gold);
+    transform: translate(2px, 2px);
+    color: #000;
+}
+
+.btn-primary:active {
+    box-shadow: 0 0 0 #997a00;
+    transform: translate(4px, 4px);
+}
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--accent-cyan);
+    border: 2px solid var(--accent-cyan);
+    box-shadow: 4px 4px 0 #006a80, var(--glow-cyan);
+}
+
+.btn-secondary:hover {
+    background: rgba(0,229,255,0.1);
+    box-shadow: 2px 2px 0 #006a80, var(--glow-cyan);
+    transform: translate(2px, 2px);
+    color: var(--accent-cyan);
+}
+
+.btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.48rem;
+}
+
+/* ─── Hero ──────────────────────────────────────────────────── */
+.hero {
+    padding: 4rem 0 3rem;
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    color: var(--accent-gold);
+    text-shadow: var(--glow-gold);
+    line-height: 1.6;
+}
+
+.hero p {
+    font-size: 1.3rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ─── Page header ───────────────────────────────────────────── */
+.page-header {
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--border);
+    padding-bottom: 1rem;
+}
+
+.page-header h1 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--accent-cyan);
+    text-shadow: var(--glow-cyan);
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.page-header p {
+    color: var(--text-dim);
+    font-size: 1.1rem;
+}
+
+/* ─── Filter bar ────────────────────────────────────────────── */
+.filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* ─── Cards grid ────────────────────────────────────────────── */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0 var(--border);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.1s;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(0,229,255,0.05);
+    pointer-events: none;
+}
+
+.card:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 4px 4px 0 var(--accent-cyan), var(--glow-cyan);
+    transform: translate(-2px, -2px);
+}
+
+.card-ocupada {
+    opacity: 0.5;
+    filter: grayscale(0.6);
+}
+
+.card-img-wrap {
+    aspect-ratio: 4/3;
+    background: var(--bg-surface);
+    overflow: hidden;
+    border-bottom: 2px solid var(--border);
+}
+
+.card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(1.2) contrast(1.05);
+    transition: filter 0.2s;
+}
+
+.card:hover .card-img-wrap img {
+    filter: saturate(1.4) contrast(1.1);
+}
+
+.card-body {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.card-body h2,
+.card-body h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--accent-gold);
+    line-height: 1.7;
+}
+
+.card-body p {
+    font-size: 1rem;
+    color: var(--text-dim);
+    flex: 1;
+    line-height: 1.4;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+}
+
+.price {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+    color: var(--accent-green);
+    text-shadow: var(--glow-green);
+}
+
+/* ─── Badges ────────────────────────────────────────────────── */
+.badge {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    font-family: 'VT323', monospace;
+    font-size: 0.95rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    border: 1px solid currentColor;
+}
+
+.badge-grande   { color: var(--accent-cyan);  border-color: var(--accent-cyan);  background: rgba(0,229,255,0.08); }
+.badge-pequeña  { color: var(--accent-green); border-color: var(--accent-green); background: rgba(57,255,20,0.08); }
+.badge-disponible { color: var(--accent-green); border-color: var(--accent-green); background: rgba(57,255,20,0.1); }
+.badge-ocupada  { color: var(--accent-pink);  border-color: var(--accent-pink);  background: rgba(255,45,120,0.1); }
+
+/* ─── Empty state ───────────────────────────────────────────── */
+.empty-state {
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+/* ─── Disponibilidad ────────────────────────────────────────── */
+.disponibilidad-form {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0 var(--border);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.disponibilidad-titulo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    font-weight: 400;
+    margin: 1.5rem 0 1rem;
+    line-height: 1.6;
+}
+
+.disponibilidad-titulo.disponible {
+    color: var(--accent-green);
+    text-shadow: var(--glow-green);
+}
+
+.disponibilidad-titulo.ocupada {
+    color: var(--accent-pink);
+    text-shadow: var(--glow-pink);
+}
+
+.disponibilidad-resultado { margin-top: 1rem; }
+
+/* ─── Formularios ───────────────────────────────────────────── */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+@media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.form-group-btn {
+    justify-content: flex-end;
+}
+
+.form-group label {
+    font-family: 'VT323', monospace;
+    font-size: 1.05rem;
+    color: var(--accent-cyan);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.form-control {
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-surface);
+    border: 2px solid var(--border);
+    color: var(--text);
+    font-family: 'VT323', monospace;
+    font-size: 1.1rem;
+    width: 100%;
+    transition: border-color 0.1s, box-shadow 0.1s;
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 1px var(--accent-cyan), var(--glow-cyan);
+}
+
+.form-control::placeholder {
+    color: var(--text-dim);
+    opacity: 0.6;
+}
+
+select.form-control option {
+    background: var(--bg-surface);
+}
+
+.field-error {
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    color: var(--accent-pink);
+}
+
+/* ─── Solicitud form ────────────────────────────────────────── */
+.solicitud-form {
+    max-width: 700px;
+}
+
+.solicitud-form fieldset {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0 var(--border);
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.solicitud-form legend {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.55rem;
+    color: var(--accent-gold);
+    text-shadow: var(--glow-gold);
+    padding: 0 0.5rem;
+    line-height: 1.6;
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* ─── Alerts ────────────────────────────────────────────────── */
+.alert {
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    border-left: 4px solid currentColor;
+    position: relative;
+}
+
+.alert-success {
+    background: rgba(57,255,20,0.08);
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+    box-shadow: var(--glow-green);
+}
+
+.alert-error {
+    background: rgba(255,45,120,0.08);
+    color: var(--accent-pink);
+    border-color: var(--accent-pink);
+    box-shadow: var(--glow-pink);
+}
+
+/* ─── Tarifas ───────────────────────────────────────────────── */
+.tarifas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.tarifa-card {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    box-shadow: 4px 4px 0 var(--border);
+    padding: 1.75rem 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all 0.1s;
+}
+
+.tarifa-card:hover {
+    border-color: var(--accent-gold);
+    box-shadow: 4px 4px 0 var(--accent-gold), var(--glow-gold);
+    transform: translate(-2px, -2px);
+}
+
+.tarifa-destacada {
+    border-color: var(--accent-gold);
+    box-shadow: 4px 4px 0 var(--accent-gold), var(--glow-gold);
+}
+
+.tarifa-badge {
+    position: absolute;
+    top: -0.75rem;
+    left: 1.25rem;
+    background: var(--accent-gold);
+    color: #000;
+    font-family: 'VT323', monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.1rem 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow: 2px 2px 0 #997a00;
+}
+
+.tarifa-header h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--accent-cyan);
+    text-shadow: var(--glow-cyan);
+    margin-bottom: 0.4rem;
+    line-height: 1.6;
+}
+
+.tarifa-precio {
+    font-size: 1.4rem;
+    color: var(--accent-green);
+    text-shadow: var(--glow-green);
+}
+
+.tarifa-precio strong {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+.tarifa-precio span {
+    font-size: 1rem;
+    color: var(--text-dim);
+}
+
+.tarifa-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex: 1;
+}
+
+.tarifa-features li {
+    color: var(--text);
+    font-size: 1.05rem;
+    padding-left: 0.2rem;
+}
+
+.tarifa-features li::before {
+    content: "> ";
+    color: var(--accent-green);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6rem;
+}
+
+.tarifas-extra {
+    margin-bottom: 2.5rem;
+}
+
+.tarifas-extra h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.7rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: var(--accent-cyan);
+    text-shadow: var(--glow-cyan);
+    line-height: 1.6;
+}
+
+.tabla-extras {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.05rem;
+}
+
+.tabla-extras th,
+.tabla-extras td {
+    text-align: left;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.tabla-extras th {
+    background: var(--bg-surface);
+    font-family: 'VT323', monospace;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--accent-gold);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.tabla-extras tr:hover td {
+    background: rgba(0,229,255,0.04);
+    color: var(--accent-cyan);
+}
+
+.admin-section { margin-bottom: 3rem; }
+.admin-section h2, .admin-section h3 { color: var(--accent-cyan); text-shadow: var(--glow-cyan); line-height: 1.6; }
+.admin-section h2 { font-family: 'Press Start 2P', monospace; font-size: .7rem; font-weight: 400; margin-bottom: 1rem; }
+.admin-section h3 { font-size: 1.25rem; margin-bottom: 1rem; }
+.admin-section-header, .admin-machine-title { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.admin-count { color: var(--accent-gold); }
+.admin-help { color: var(--text-dim); }
+.admin-table-wrap { overflow-x: auto; background: var(--bg-card); border: 2px solid var(--border); }
+.admin-table { min-width: 700px; }
+.admin-table small { color: var(--text-dim); }
+.inline-form { display: flex; gap: .5rem; align-items: center; }
+.inline-form .form-control { min-width: 125px; }
+.admin-new-machine { border-color: var(--accent-gold); }
+.admin-machine-title { border-bottom: 1px solid var(--border); margin-bottom: 1rem; padding-bottom: .5rem; }
+
+.tarifas-nota {
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-left: 4px solid var(--accent-pink);
+    padding: 1.5rem;
+    box-shadow: 4px 4px 0 var(--border);
+}
+
+.tarifas-nota h3 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.55rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+    color: var(--accent-pink);
+    text-shadow: var(--glow-pink);
+    line-height: 1.6;
+}
+
+.tarifas-nota ol {
+    padding-left: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+}
+
+/* ─── Utilities ─────────────────────────────────────────────── */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
+@keyframes flicker {
+    0%, 96%, 100% { opacity: 1; }
+    97%            { opacity: 0.85; }
+    98%            { opacity: 1; }
+    99%            { opacity: 0.9; }
+}
+
+@keyframes blink {
+    0%, 49%  { opacity: 1; }
+    50%, 100% { opacity: 0; }
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent-gold); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-cyan); }
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection {
+    background: var(--accent-gold);
+    color: #000;
+}

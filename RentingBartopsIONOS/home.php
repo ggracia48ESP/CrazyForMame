@@ -1,0 +1,1 @@
+<section class="hero"><h1>Máquinas recreativas artesanales para tu evento</h1><p>Alquila máquinas recreativas únicas para bodas, cumpleaños y fiestas. Hechas a mano, con carácter propio.</p><div class="hero-actions"><a href="/catalogo.php" class="btn btn-primary">Ver catálogo</a><a href="/calendario.php" class="btn btn-secondary">Consultar disponibilidad</a></div></section>
