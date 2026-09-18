@@ -8,6 +8,7 @@ return [
         'password' => 'CAMBIAR_EN_IONOS',
         'charset' => 'utf8mb4',
     ],
+    'notification_email' => 'thorzanocade@gmail.com',
     'admin' => [
         'user' => 'admin',
         'password_hash' => 'GENERAR_CON_SETUP',

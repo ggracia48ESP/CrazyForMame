@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS solicitudes (
   nombre_cliente VARCHAR(100) NOT NULL,
   email_cliente VARCHAR(200) NOT NULL,
   telefono_cliente VARCHAR(30) NOT NULL,
+  notas TEXT NULL,
   fecha_inicio DATE NOT NULL,
   fecha_fin DATE NOT NULL,
   estado ENUM('Pendiente','Aprobada','Rechazada') NOT NULL DEFAULT 'Pendiente',
@@ -27,4 +28,34 @@ CREATE TABLE IF NOT EXISTS bloqueos_fecha (
   fecha_fin DATE NOT NULL,
   motivo VARCHAR(300) NULL,
   CONSTRAINT fk_bloqueos_maquina FOREIGN KEY (maquina_id) REFERENCES maquinas(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS tarifas (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  tipo ENUM('alquiler','extra') NOT NULL DEFAULT 'alquiler',
+  nombre VARCHAR(200) NOT NULL,
+  precio VARCHAR(100) NOT NULL DEFAULT '',
+  unidad VARCHAR(100) NOT NULL DEFAULT '',
+  descripcion TEXT NULL,
+  destacada TINYINT(1) NOT NULL DEFAULT 0,
+  orden INT NOT NULL DEFAULT 0,
+  activa TINYINT(1) NOT NULL DEFAULT 1,
+  fecha_actualizacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS galeria_eventos (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(200) NOT NULL,
+  descripcion VARCHAR(1000) NOT NULL DEFAULT '',
+  fecha_evento DATE NULL,
+  fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS galeria_imagenes (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  evento_id INT UNSIGNED NOT NULL,
+  imagen_url VARCHAR(500) NOT NULL,
+  texto_alternativo VARCHAR(200) NOT NULL DEFAULT '',
+  fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  CONSTRAINT fk_galeria_imagenes_evento FOREIGN KEY (evento_id) REFERENCES galeria_eventos(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

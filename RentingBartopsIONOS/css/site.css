@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════
-   CrazyForMame Bartops Renting — Retro Arcade Theme
+   Crazy4Arcade — Retro Arcade Theme
    ═══════════════════════════════════════════════════════════ */
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
@@ -255,6 +255,32 @@ footer {
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.social-cta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    max-width: 760px;
+    margin: 1rem auto 3rem;
+    padding: 1.25rem 1.5rem;
+    background: linear-gradient(110deg, rgba(255,45,120,0.12), rgba(0,229,255,0.08));
+    border: 2px solid var(--accent-pink);
+    box-shadow: 4px 4px 0 #8c1745, var(--glow-pink);
+}
+
+.social-icon { flex: 0 0 auto; color: var(--accent-pink); filter: drop-shadow(0 0 5px rgba(255,45,120,0.8)); }
+.social-icon svg { display: block; width: 3rem; height: 3rem; }
+.social-copy { flex: 1; }
+.social-copy h2 { margin-bottom: 0.35rem; color: var(--accent-pink); font-family: 'Press Start 2P', monospace; font-size: 0.75rem; font-weight: 400; line-height: 1.5; text-shadow: var(--glow-pink); }
+.social-copy p { color: var(--text-dim); font-size: 1.15rem; }
+.btn-social { color: #fff; background: var(--accent-pink); box-shadow: 4px 4px 0 #8c1745, var(--glow-pink); white-space: nowrap; }
+.btn-social:hover { color: #fff; background: #ff5793; box-shadow: 2px 2px 0 #8c1745, var(--glow-pink); }
+
+@media (max-width: 600px) {
+    .social-cta { align-items: flex-start; flex-wrap: wrap; }
+    .social-copy { min-width: calc(100% - 4rem); }
+    .btn-social { margin-left: 4rem; }
 }
 
 /* ─── Page header ───────────────────────────────────────────── */
@@ -695,6 +721,8 @@ select.form-control option {
 .admin-help { color: var(--text-dim); }
 .admin-table-wrap { overflow-x: auto; background: var(--bg-card); border: 2px solid var(--border); }
 .admin-table { min-width: 700px; }
+.admin-brand-label { color: var(--accent-pink); font: 400 .55rem 'Press Start 2P', monospace; margin-left: .5rem; }
+.check-label { display: inline-flex; align-items: center; gap: .45rem; color: var(--text); margin: .25rem 1rem .75rem 0; }
 .admin-table small { color: var(--text-dim); }
 .inline-form { display: flex; gap: .5rem; align-items: center; }
 .inline-form .form-control { min-width: 125px; }
@@ -760,3 +788,67 @@ select.form-control option {
     background: var(--accent-gold);
     color: #000;
 }
+
+/* Crazy4Arcade: identidad verde y rosa fluor */
+:root {
+    --accent-gold: #ff1493;
+    --accent-cyan: #b6ff00;
+    --accent-pink: #ff1493;
+    --accent-green: #39ff14;
+    --border: #3f1744;
+    --text-dim: #c0b0c7;
+    --glow-gold: 0 0 8px rgba(255,20,147,.75);
+    --glow-cyan: 0 0 8px rgba(182,255,0,.75);
+    --glow-pink: 0 0 8px rgba(255,20,147,.75);
+    --glow-green: 0 0 8px rgba(57,255,20,.75);
+}
+
+.brand { display: flex; align-items: center; max-width: 300px; height: 66px; }
+.brand img { display: block; width: 270px; height: 62px; object-fit: cover; object-position: center; }
+.brand:hover { filter: drop-shadow(0 0 7px rgba(182,255,0,.9)); }
+.social-links { display: flex; align-items: center; flex-wrap: wrap; gap: .5rem 1rem; }
+.social-links a { color: var(--accent-green); text-decoration: underline; text-underline-offset: 3px; }
+.social-links a:hover { color: var(--accent-pink); }
+.social-links-footer { justify-content: center; margin-top: .5rem; }
+.social-cta { background: linear-gradient(110deg, rgba(255,20,147,.12), rgba(57,255,20,.08)); }
+.social-cta .social-links { margin-top: .5rem; }
+.solicitar-redes { margin: -0.25rem 0 1.5rem; padding: 1rem 1.25rem; border: 2px solid var(--accent-green); box-shadow: 3px 3px 0 #18720c, var(--glow-green); background: rgba(57,255,20,.05); }
+.solicitar-redes h2 { color: var(--accent-green); font: 400 .7rem/1.6 'Press Start 2P', monospace; margin-bottom: .65rem; }
+.solicitar-redes .social-links a { font-size: 1.15rem; }
+
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.gallery-event { background: var(--bg-card); border: 2px solid var(--border); box-shadow: 4px 4px 0 var(--border); overflow: hidden; }
+.gallery-event:hover { border-color: var(--accent-pink); box-shadow: 4px 4px 0 var(--accent-pink), var(--glow-pink); }
+.gallery-event-cover { aspect-ratio: 4/3; background: var(--bg-surface); overflow: hidden; }
+.gallery-event-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-event-body { padding: 1rem; }
+.gallery-event-body h2 { color: var(--accent-pink); font: 400 .7rem/1.6 'Press Start 2P', monospace; margin-bottom: .5rem; }
+.gallery-event-body p { color: var(--text-dim); line-height: 1.35; }
+.gallery-event-date { display: block; color: var(--accent-green); margin-bottom: .6rem; }
+.gallery-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: .35rem; padding: 0 1rem 1rem; }
+.gallery-thumbs img { width: 100%; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--border); }
+.admin-gallery-images { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: .75rem; margin-top: 1rem; }
+.admin-gallery-image { position: relative; }
+.admin-gallery-image img { width: 100%; aspect-ratio: 1; object-fit: cover; border: 1px solid var(--border); display: block; }
+.admin-gallery-image form { position: absolute; right: .25rem; top: .25rem; }
+.admin-gallery-image button { padding: .2rem .35rem; font-size: .7rem; }
+.admin-table { min-width: 700px; }
+
+@media (max-width: 760px) {
+    .header-container { height: auto; min-height: 72px; padding: .5rem 0; align-items: flex-start; }
+    .brand { height: 58px; }
+    .brand img { width: 210px; height: 55px; }
+    nav { padding-top: .35rem; }
+}
+
+.image-zoom { display: block; position: relative; width: 100%; height: 100%; cursor: zoom-in; }
+.image-zoom::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,.08); opacity: 0; transition: opacity .15s; pointer-events: none; }
+.image-zoom:hover::after { opacity: 1; }
+.zoom-icon { position: absolute; right: .65rem; bottom: .65rem; z-index: 1; width: 2.25rem; height: 2.25rem; border: 2px solid var(--accent-pink); border-radius: 50%; background: rgba(5,5,15,.88); box-shadow: var(--glow-pink); pointer-events: none; }
+.zoom-icon::before { content: ''; position: absolute; width: .72rem; height: .72rem; border: 2px solid var(--accent-green); border-radius: 50%; left: .48rem; top: .42rem; }
+.zoom-icon::after { content: ''; position: absolute; width: .58rem; height: 2px; background: var(--accent-green); transform: rotate(45deg); left: 1.13rem; top: 1.32rem; box-shadow: var(--glow-green); }
+.lightbox { position: fixed; inset: 0; z-index: 10000; display: grid; place-items: center; padding: 4rem 1.5rem 1.5rem; background: rgba(2,2,8,.92); }
+.lightbox-frame { max-width: min(1100px, 95vw); max-height: 88vh; border: 2px solid var(--accent-pink); box-shadow: 0 0 0 4px rgba(57,255,20,.18), 0 0 28px rgba(255,20,147,.65); background: var(--bg-surface); }
+.lightbox-frame img { display: block; max-width: 100%; max-height: 85vh; width: auto; height: auto; object-fit: contain; }
+.lightbox-close { position: absolute; top: 1rem; right: 1rem; width: 2.7rem; height: 2.7rem; border: 2px solid var(--accent-green); color: var(--accent-green); background: var(--bg-card); font: 1.8rem/1 'VT323', monospace; cursor: pointer; box-shadow: var(--glow-green); }
+.lightbox-close:hover { color: var(--accent-pink); border-color: var(--accent-pink); box-shadow: var(--glow-pink); }

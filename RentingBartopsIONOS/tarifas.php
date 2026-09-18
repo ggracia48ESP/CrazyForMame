@@ -1,1 +1,1 @@
-<?php require __DIR__.'/app/bootstrap.php'; $title='Tarifas'; $view_file=__DIR__.'/tarifas.view.php'; require __DIR__.'/layout.php';
+<?php require __DIR__.'/app/bootstrap.php'; $title='Tarifas'; $tarifas=$pdo->query("SELECT * FROM tarifas WHERE activa=1 ORDER BY tipo, orden, id")->fetchAll(); $view_file=__DIR__.'/tarifas.view.php'; require __DIR__.'/layout.php';
